@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import TodoList from './Components/TodoList';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// Hooks
+import { TodosContext } from './Context/TodosContext';
+import { useState } from 'react';
+import { SnackBarProvider } from './Context/SnackBarContext';
+
+// Font Theme
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Alexandria"],
+  }
+});
 
 function App() {
+  // Todos
+  const [todos, setTodos] = useState(
+    JSON.parse(localStorage.getItem("todos")) || []
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <SnackBarProvider>
+        <div className="App">
+          {/* Todo List */}
+          <TodosContext value={{todos: todos , setTodos: setTodos}}>
+            <TodoList/>
+          </TodosContext>
+        </div>
+      </SnackBarProvider>
+    </ThemeProvider>
   );
 }
 
