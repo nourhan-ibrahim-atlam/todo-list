@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/icon.png" alt="مهامي Logo" width="80" />
+<img src="public/icon.jpg" alt="مهامي Logo" width="80" />
 
 # مهامي — My Tasks
 
